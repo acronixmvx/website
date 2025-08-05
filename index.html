@@ -53,7 +53,11 @@
             <tr><th>Transfers</th><td id="transfers">Loading...</td></tr>
         </table>
         <div class="token-properties">
-            <p>Properties: Can't Mint, Can't Wipe, Can't Freeze, Can't Burn</p>
+            <p>Properties:</p>
+            <p>❌ Can't Mint</p>
+            <p>❌ Can't Wipe</p>
+            <p>❌ Can't Freeze</p>
+            <p>❌ Can't Burn</p>
         </div>
     </section>
 
@@ -94,7 +98,7 @@
         <h2>Submit Your Application</h2>
         <p>All applications are verified by our team and must be hosted on GitHub. To submit, contact us at:</p>
         <div class="email-reveal">
-            <button onclick="revealEmail()">Reveal Email</button>
+            <button id="email-btn" onclick="toggleEmail()">Reveal Email</button>
             <span id="email" style="display: none;">acronix.team@proton.me</span>
         </div>
     </section>
@@ -103,13 +107,14 @@
     <section id="posts" class="section posts">
         <h2>Featured Posts</h2>
         <div class="posts-grid">
-            <!-- Placeholder for X posts (to be embedded later) -->
             <div class="post">Post 1 Placeholder</div>
             <div class="post">Post 2 Placeholder</div>
             <div class="post">Post 3 Placeholder</div>
             <div class="post">Post 4 Placeholder</div>
             <div class="post">Post 5 Placeholder</div>
             <div class="post">Post 6 Placeholder</div>
+            <div class="post">Post 7 Placeholder</div>
+            <div class="post">Post 8 Placeholder</div>
         </div>
     </section>
 
@@ -123,7 +128,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; AcroniX 2025</p>
+        <p>Copyright AcroniX 2025</p>
     </footer>
 
     <script src="script.js"></script>
