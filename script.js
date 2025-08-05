@@ -42,6 +42,20 @@ hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('open');
 });
 
+// Smooth Scroll for Navbar Links
+document.querySelectorAll('.nav-links a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('open');
+        }
+    });
+});
+
 // Copy Token ID
 function copyTokenID() {
     navigator.clipboard.writeText('NIX-12345').then(() => {
