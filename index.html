@@ -5,276 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AcroniX - $NIX</title>
     <link rel="icon" href="acronix.png" type="image/png">
-    <style>
-        /* CSS Styles */
-        :root {
-            --bg-color: #000000;
-            --text-color: #00ff00;
-            --accent-color: #00cc00;
-            --matrix-speed: 50ms;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Courier New', Courier, monospace;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Matrix Rain Background */
-        #matrix-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.5;
-        }
-
-        /* Navbar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 10;
-            transition: all 0.3s ease;
-        }
-
-        .navbar .logo {
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-
-        .navbar ul {
-            list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
-
-        .navbar ul li {
-            margin: 0 15px;
-        }
-
-        .navbar ul li a {
-            text-decoration: none;
-            color: var(--text-color);
-            transition: color 0.3s ease;
-        }
-
-        .navbar ul li a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Hamburger Menu for Mobile */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background-color: var(--text-color);
-            margin: 4px 0;
-            transition: all 0.3s ease;
-        }
-
-        @media (max-width: 768px) {
-            .navbar ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                background-color: rgba(0, 0, 0, 0.9);
-            }
-
-            .navbar ul.active {
-                display: flex;
-            }
-
-            .navbar ul li {
-                margin: 10px 0;
-                text-align: center;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-        }
-
-        /* Sections */
-        section {
-            padding: 80px 20px;
-            text-align: center;
-            min-height: 100vh;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        h1, h2 {
-            margin: 0;
-            animation: glow 2s infinite alternate;
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 5px var(--text-color); }
-            to { text-shadow: 0 0 15px var(--accent-color); }
-        }
-
-        .hero {
-            padding-top: 100px;
-        }
-
-        .slogan {
-            font-size: 1.2em;
-            margin: 10px 0;
-        }
-
-        .buttons {
-            margin: 20px 0;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            background-color: var(--bg-color);
-            border: 2px solid var(--text-color);
-            color: var(--text-color);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: var(--text-color);
-            color: var(--bg-color);
-            border-color: var(--accent-color);
-            transform: scale(1.05);
-        }
-
-        /* Dashboard */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 20px auto;
-            max-width: 800px;
-        }
-
-        .dashboard-item {
-            background-color: rgba(0, 255, 0, 0.1);
-            padding: 20px;
-            border: 1px solid var(--text-color);
-            border-radius: 5px;
-            transition: transform 0.3s ease;
-        }
-
-        .dashboard-item:hover {
-            transform: scale(1.05);
-        }
-
-        /* Tokenomics */
-        .tokenomics-list {
-            list-style: none;
-            padding: 0;
-            max-width: 600px;
-            margin: 20px auto;
-        }
-
-        .tokenomics-list li {
-            margin: 10px 0;
-            animation: slideIn 0.5s ease forwards;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        /* Get NIX */
-        .get-nix-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        /* Footer */
-        footer {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            text-align: center;
-        }
-
-        footer a {
-            color: var(--text-color);
-            margin: 0 10px;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        footer a:hover {
-            color: var(--accent-color);
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Matrix Rain Canvas -->
-    <canvas id="matrix-canvas"></canvas>
+    <div id="bubbles-container"></div>
 
-    <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">AcroniX</div>
-        <ul>
+        <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#dashboard">Dashboard</a></li>
             <li><a href="#tokenomics">Tokenomics</a></li>
             <li><a href="#get-nix">Get $NIX</a></li>
         </ul>
-        <div class="hamburger" onclick="toggleMenu()">
+        <div class="hamburger">
             <span></span>
             <span></span>
             <span></span>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero section">
         <h1>AcroniX - $NIX</h1>
         <p class="slogan">True value. Safety by default. Bringing it home with $NIX. On MultiversX.</p>
         <div class="buttons">
             <a href="#get-nix" class="btn">Get NIX</a>
-            <a href="#tokenomics" class="btn">Litepaper</a> <!-- Assuming Tokenomics serves as Litepaper overview -->
+            <a href="#tokenomics" class="btn">Litepaper</a>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
+    <section id="about" class="section">
         <h2>About AcroniX</h2>
-        <p>AcroniX, $NIX, is a token launched on the MultiversX blockchain with the native currency $EGLD. It aims for sustainable growth and value maintenance, along with security and transparency.</p>
-        <p>$NIX has simple, definitive tokenomics that respect the above properties. It has a max supply of 9137 tokens, forever. It cannot be minted, burned, frozen, or wiped. It's written in the code. Transparency is accessible to all, with all actions related to the token verifiable through the MultiversX Blockchain Explorer.</p>
+        <p>AcroniX, $NIX, is a token launched on the MultiversX blockchain with the native currency $EGLD. Its purpose is sustainable growth and value maintenance, along with security and transparency.</p>
+        <p>The token has simple, definitive tokenomics. Max supply of 9137 tokens, forever. No minting, burning, freezing, or wiping possible—it's hardcoded. All actions are verifiable via the MultiversX Blockchain Explorer.</p>
+        <p>Tokenized Applications, Scarcity, and long-term utility with $NIX on the most scalable blockchain architecture today - MultiversX.</p>
     </section>
 
-    <!-- Dashboard Section -->
-    <section id="dashboard">
+    <section id="dashboard" class="section">
         <h2>Dashboard</h2>
         <div class="dashboard-grid">
             <div class="dashboard-item">
@@ -296,36 +64,33 @@
         </div>
     </section>
 
-    <!-- Tokenomics Section -->
-    <section id="tokenomics">
+    <section id="tokenomics" class="section">
         <h2>Tokenomics & Allocations</h2>
+        <p>Total supply: 9137 tokens</p>
         <ul class="tokenomics-list">
             <li>25% Initial Liquidity (xExchange Pool)</li>
-            <li>45% Future Liquidity Injections</li>
-            <li>15% Treasury Reserves (Partnerships, integrations etc…)</li>
+            <li>45% Future Liquidity Injections (locked, community-governed)</li>
+            <li>15% Treasury Reserves (for partnerships, integrations, etc.)</li>
             <li>10% Team Allocation</li>
             <li>5% Initial Investors</li>
         </ul>
-        <p>Initial liquidity has been explained. Future liquidity injections: These 45% will be allocated to a locked account that operates strictly with community consent, allowing free voting on important project decisions.</p>
-        <p>Treasury, team allocation, and initial investors are self-explanatory by title.</p>
-        <p>Listing: The token will be initially listed in a pool between EGLD and NIX on xExchange, with 20% of the total supply as initial liquidity, at a price determined then. Shortly after listing, it will be available on other DEXs in the ecosystem like Onedex and Jexchange, and integrated into the xPortal app.</p>
+        <p>Future liquidity injections are allocated to a locked account that operates with community consent via voting on key decisions.</p>
+        <p>Listing: Initial listing on xExchange in EGLD/NIX pool with 20% supply as liquidity. Soon after, available on Onedex, Jexchange, and integrated into xPortal.</p>
     </section>
 
-    <!-- Get NIX Section -->
-    <section id="get-nix">
+    <section id="get-nix" class="section">
         <h2>Get $NIX</h2>
-        <p>Available on:</p>
+        <p>Available on the following platforms:</p>
         <div class="get-nix-links">
             <a href="https://xexchange.com" class="btn" target="_blank">xExchange</a>
-            <img src="xportal.png" alt="xPortal" style="height: 50px; margin: 10px;">
             <a href="https://xportal.com" class="btn" target="_blank">xPortal</a>
+            <img src="xportal.png" alt="xPortal" class="platform-img">
             <a href="https://onedex.com" class="btn" target="_blank">Onedex</a>
             <a href="https://jexchange.com" class="btn" target="_blank">Jexchange</a>
         </div>
-        <p>Add Liquidity to: <a href="https://xexchange.com" target="_blank">xExchange</a></p>
+        <p>Add Liquidity to: <a href="https://xexchange.com" target="_blank" class="link">xExchange</a></p>
     </section>
 
-    <!-- Footer -->
     <footer>
         <h3>Technical Links</h3>
         <a href="https://github.com/acronixmvx" target="_blank">Github</a>
@@ -335,96 +100,6 @@
         <a href="https://linktr.ee/acronixmvx" target="_blank">Linktree</a>
     </footer>
 
-    <!-- JavaScript -->
-    <script>
-        // Matrix Rain Effect
-        const canvas = document.getElementById('matrix-canvas');
-        const ctx = canvas.getContext('2d');
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
-        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const nums = '0123456789';
-
-        const alphabet = katakana + latin + nums;
-
-        const fontSize = 16;
-        const columns = canvas.width / fontSize;
-
-        const rainDrops = [];
-
-        for (let x = 0; x < columns; x++) {
-            rainDrops[x] = 1;
-        }
-
-        function draw() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.fillStyle = '#00ff00';
-            ctx.font = fontSize + 'px monospace';
-
-            for (let i = 0; i < rainDrops.length; i++) {
-                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
-
-                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    rainDrops[i] = 0;
-                }
-                rainDrops[i]++;
-            }
-        }
-
-        setInterval(draw, 30);
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        // Hamburger Menu Toggle
-        function toggleMenu() {
-            const ul = document.querySelector('.navbar ul');
-            ul.classList.toggle('active');
-            const hamburger = document.querySelector('.hamburger');
-            hamburger.classList.toggle('active');
-        }
-
-        // Fetch API Data
-        async function fetchTokenData() {
-            try {
-                const response = await fetch('https://api.multiversx.com/tokens/NIX-de14cc');
-                const data = await response.json();
-
-                // Note: Price and MCAP are not directly in this API. For demo, assuming placeholders or need another API.
-                // Here, using supply to estimate MCAP if price were available, but since not, showing N/A or simulate.
-                // In real, might need https://api.xexchange.com or similar for price.
-                document.getElementById('price').textContent = 'N/A (Fetch from DEX API)'; // Placeholder
-                document.getElementById('mcap').textContent = 'N/A (Supply: ' + data.supply + ')'; // Placeholder
-                document.getElementById('transfers').textContent = data.transfers;
-                document.getElementById('accounts').textContent = data.accounts;
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                document.getElementById('price').textContent = 'Error';
-                document.getElementById('mcap').textContent = 'Error';
-                document.getElementById('transfers').textContent = 'Error';
-                document.getElementById('accounts').textContent = 'Error';
-            }
-        }
-
-        fetchTokenData();
-
-        // Smooth Scroll for Navbar Links
-        document.querySelectorAll('.navbar a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const target = document.getElementById(targetId);
-                target.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
