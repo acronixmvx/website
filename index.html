@@ -1,103 +1,119 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AcroniX - $NIX</title>
-    <link rel="icon" href="acronix.png" type="image/png">
-    <link rel="stylesheet" href="styles.css">
+    <title>AcroniX - $NIX Token</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="bubbles-container"></div>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <h2>AcroniX</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#utility">Utility</a></li>
+                <li><a href="#listing">Listing</a></li>
+                <li><a href="#tokenomics">Tokenomics</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
 
-    <nav class="navbar">
-        <div class="logo">AcroniX</div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#dashboard">Dashboard</a></li>
-            <li><a href="#tokenomics">Tokenomics</a></li>
-            <li><a href="#get-nix">Get $NIX</a></li>
-        </ul>
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">AcroniX Paper ($NIX)</h1>
+            <p class="hero-subtitle">Sustainable Growth, Unwavering Value, Absolute Security & Transparency</p>
+            <button class="cta-button">Explore $NIX</button>
         </div>
-    </nav>
+        <div class="hero-bg"></div>
+    </section>
 
-    <section id="home" class="hero section">
-        <h1>AcroniX - $NIX</h1>
-        <p class="slogan">True value. Safety by default. Bringing it home with $NIX. On MultiversX.</p>
-        <div class="buttons">
-            <a href="#get-nix" class="btn">Get NIX</a>
-            <a href="#tokenomics" class="btn">Litepaper</a>
+    <section id="utility" class="section">
+        <div class="container">
+            <h2 class="section-title">Utility, Purpose and Fundamentals</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>Core Purpose</h3>
+                    <p>AcroniX ($NIX), launched on the MultiversX blockchain with native currency $EGLD, is designed for sustainable growth and value preservation, backed by robust security and full transparency.</p>
+                </div>
+                <div class="content-card">
+                    <h3>Tokenomics Simplicity</h3>
+                    <p>$NIX features straightforward, immutable tokenomics. Maximum supply: 9137 tokens, forever. No printing, burning, freezing, or wiping—hardcoded for integrity.</p>
+                </div>
+                <div class="content-card">
+                    <h3>Transparency First</h3>
+                    <p>All token-related actions are verifiable on the MultiversX Blockchain Explorer, ensuring openness for everyone.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="about" class="section">
-        <h2>About AcroniX</h2>
-        <p>AcroniX, $NIX, is a token launched on the MultiversX blockchain with the native currency $EGLD. Its purpose is sustainable growth and value maintenance, along with security and transparency.</p>
-        <p>The token has simple, definitive tokenomics. Max supply of 9137 tokens, forever. No minting, burning, freezing, or wiping possible—it's hardcoded. All actions are verifiable via the MultiversX Blockchain Explorer.</p>
-        <p>Tokenized Applications, Scarcity, and long-term utility with $NIX on the most scalable blockchain architecture today - MultiversX.</p>
-    </section>
-
-    <section id="dashboard" class="section">
-        <h2>Dashboard</h2>
-        <div class="dashboard-grid">
-            <div class="dashboard-item">
-                <h3>Price</h3>
-                <p id="price">Loading...</p>
-            </div>
-            <div class="dashboard-item">
-                <h3>Market Cap</h3>
-                <p id="mcap">Loading...</p>
-            </div>
-            <div class="dashboard-item">
-                <h3>Transfers</h3>
-                <p id="transfers">Loading...</p>
-            </div>
-            <div class="dashboard-item">
-                <h3>Accounts</h3>
-                <p id="accounts">Loading...</p>
+    <section id="listing" class="section alternate">
+        <div class="container">
+            <h2 class="section-title">Listing & Availability</h2>
+            <div class="content-card full-width">
+                <h3>Initial Launch</h3>
+                <p>The token will debut in an EGLD-NIX pool on xExchange, with 25% of total supply as initial liquidity at a market-determined price.</p>
+                <ul class="feature-list">
+                    <li>Post-launch: Available on ecosystem DEXs like OneDEX and JEXchange.</li>
+                    <li>Integration: Seamless addition to the xPortal app for easy access.</li>
+                </ul>
+                <div class="icon-animation">
+                    <div class="rocket">🚀</div>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="tokenomics" class="section">
-        <h2>Tokenomics & Allocations</h2>
-        <p>Total supply: 9137 tokens</p>
-        <ul class="tokenomics-list">
-            <li>25% Initial Liquidity (xExchange Pool)</li>
-            <li>45% Future Liquidity Injections (locked, community-governed)</li>
-            <li>15% Treasury Reserves (for partnerships, integrations, etc.)</li>
-            <li>10% Team Allocation</li>
-            <li>5% Initial Investors</li>
-        </ul>
-        <p>Future liquidity injections are allocated to a locked account that operates with community consent via voting on key decisions.</p>
-        <p>Listing: Initial listing on xExchange in EGLD/NIX pool with 20% supply as liquidity. Soon after, available on Onedex, Jexchange, and integrated into xPortal.</p>
-    </section>
-
-    <section id="get-nix" class="section">
-        <h2>Get $NIX</h2>
-        <p>Available on the following platforms:</p>
-        <div class="get-nix-links">
-            <a href="https://xexchange.com" class="btn" target="_blank">xExchange</a>
-            <a href="https://xportal.com" class="btn" target="_blank">xPortal</a>
-            <img src="xportal.png" alt="xPortal" class="platform-img">
-            <a href="https://onedex.com" class="btn" target="_blank">Onedex</a>
-            <a href="https://jexchange.com" class="btn" target="_blank">Jexchange</a>
+        <div class="container">
+            <h2 class="section-title">Tokenomics & Allocations</h2>
+            <div class="tokenomics-grid">
+                <div class="allocation-card">
+                    <div class="percentage">25%</div>
+                    <h4>Initial Liquidity</h4>
+                    <p>xExchange Pool</p>
+                </div>
+                <div class="allocation-card">
+                    <div class="percentage">45%</div>
+                    <h4>Future Liquidity Injections</h4>
+                    <p>Locked account, community-voted decisions for injections.</p>
+                </div>
+                <div class="allocation-card">
+                    <div class="percentage">15%</div>
+                    <h4>Treasury Reserves</h4>
+                    <p>For partnerships, integrations, and growth initiatives.</p>
+                </div>
+                <div class="allocation-card">
+                    <div class="percentage">10%</div>
+                    <h4>Team Allocation</h4>
+                    <p>Dedicated to core development team.</p>
+                </div>
+                <div class="allocation-card">
+                    <div class="percentage">5%</div>
+                    <h4>Initial Investors</h4>
+                    <p>Early supporters of the project.</p>
+                </div>
+            </div>
+            <div class="total-supply">
+                <h3>Total Supply: 9,137 $NIX Tokens</h3>
+            </div>
         </div>
-        <p>Add Liquidity to: <a href="https://xexchange.com" target="_blank" class="link">xExchange</a></p>
     </section>
 
-    <footer>
-        <h3>Technical Links</h3>
-        <a href="https://github.com/acronixmvx" target="_blank">Github</a>
-        <a href="https://explorer.multiversx.com/tokens/NIX-de14cc" target="_blank">MultiversX Explorer</a>
-        <h3>Social Links</h3>
-        <a href="https://x.com/AcroniXMVX" target="_blank">Twitter</a>
-        <a href="https://linktr.ee/acronixmvx" target="_blank">Linktree</a>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 AcroniX. Built on MultiversX. All rights reserved.</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
