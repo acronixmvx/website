@@ -1,64 +1,80 @@
-// Hamburger Menu
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
+// script.js
+document.addEventListener('DOMContentLoaded', function() {
+    // Hamburger Menu Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
 
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    hamburger.classList.toggle('active');
-});
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        hamburger.classList.toggle('active');
+    });
 
-// Smooth Scroll
-document.querySelectorAll('.nav-links a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        const target = document.getElementById(targetId);
-        target.scrollIntoView({ behavior: 'smooth' });
-        navLinks.classList.remove('active');
-        hamburger.classList.remove('active');
+    // Close menu on link click
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+        });
+    });
+
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Scroll Animations with Intersection Observer
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = 'running';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observe cards and sections
+    document.querySelectorAll('.content-card, .allocation-card, .section-title').forEach(el => {
+        el.style.animationPlayState = 'paused';
+        observer.observe(el);
+    });
+
+    // Header Background on Scroll
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('.header');
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(0, 0, 0, 0.95)';
+        } else {
+            header.style.background = 'rgba(0, 0, 0, 0.8)';
+        }
+    });
+
+    // CTA Button Pulse
+    const ctaButton = document.querySelector('.cta-button');
+    setInterval(() => {
+        ctaButton.style.transform = 'scale(1.05)';
+        setTimeout(() => {
+            ctaButton.style.transform = 'scale(1)';
+        }, 300);
+    }, 3000);
+
+    // Parallax Effect for Hero BG (simple)
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const heroBg = document.querySelector('.hero-bg');
+        heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
     });
 });
-
-// Generate Bubbles
-const bubblesContainer = document.getElementById('bubbles-container');
-function createBubble() {
-    const bubble = document.createElement('div');
-    bubble.classList.add('bubble');
-    const size = Math.random() * 60 + 20; // 20 to 80px
-    bubble.style.width = `${size}px`;
-    bubble.style.height = `${size}px`;
-    bubble.style.left = `${Math.random() * 100}vw`;
-    bubble.style.animationDuration = `${Math.random() * 10 + 10}s`; // 10 to 20s
-    bubblesContainer.appendChild(bubble);
-
-    // Remove bubble after animation
-    setTimeout(() => {
-        bubble.remove();
-    }, 20000);
-}
-
-setInterval(createBubble, 1000); // Create a bubble every second
-
-// Fetch Token Data
-async function fetchTokenData() {
-    try {
-        const response = await fetch('https://api.multiversx.com/tokens/NIX-de14cc');
-        const data = await response.json();
-
-        // Price and MCAP not in this API. Using placeholders.
-        // To get price, would need xExchange GraphQL or other, but for now N/A
-        document.getElementById('price').textContent = 'N/A (Not listed yet)';
-        const supply = parseFloat(data.supply);
-        document.getElementById('mcap').textContent = 'N/A (Supply: ' + supply + ')';
-        document.getElementById('transfers').textContent = data.transfers;
-        document.getElementById('accounts').textContent = data.accounts;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        document.getElementById('price').textContent = 'Error';
-        document.getElementById('mcap').textContent = 'Error';
-        document.getElementById('transfers').textContent = 'Error';
-        document.getElementById('accounts').textContent = 'Error';
-    }
-}
-
-fetchTokenData();
