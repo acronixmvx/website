@@ -1,119 +1,134 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AcroniX - $NIX Token</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>AcroniX - Tokenized Applications</title>
+    <link rel="icon" type="image/png" href="acronix.png.png">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <div class="logo">
-                <h2>AcroniX</h2>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#utility">Utility</a></li>
-                <li><a href="#listing">Listing</a></li>
-                <li><a href="#tokenomics">Tokenomics</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
+    <!-- Matrix Rain Background -->
+    <canvas id="matrix"></canvas>
 
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">AcroniX</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#token-details">Token Details</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#explore">Explore $NIX</a></li>
+            <li><a href="#submit">Submit App</a></li>
+            <li><a href="#posts">Featured Posts</a></li>
+            <li><a href="#contribute">Contribute</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">AcroniX Paper ($NIX)</h1>
-            <p class="hero-subtitle">Sustainable Growth, Unwavering Value, Absolute Security & Transparency</p>
-            <button class="cta-button">Explore $NIX</button>
-        </div>
-        <div class="hero-bg"></div>
-    </section>
-
-    <section id="utility" class="section">
-        <div class="container">
-            <h2 class="section-title">Utility, Purpose and Fundamentals</h2>
-            <div class="content-grid">
-                <div class="content-card">
-                    <h3>Core Purpose</h3>
-                    <p>AcroniX ($NIX), launched on the MultiversX blockchain with native currency $EGLD, is designed for sustainable growth and value preservation, backed by robust security and full transparency.</p>
-                </div>
-                <div class="content-card">
-                    <h3>Tokenomics Simplicity</h3>
-                    <p>$NIX features straightforward, immutable tokenomics. Maximum supply: 9137 tokens, forever. No printing, burning, freezing, or wiping—hardcoded for integrity.</p>
-                </div>
-                <div class="content-card">
-                    <h3>Transparency First</h3>
-                    <p>All token-related actions are verifiable on the MultiversX Blockchain Explorer, ensuring openness for everyone.</p>
-                </div>
-            </div>
+        <h1>AcroniX</h1>
+        <p>Tokenized Applications, Scarcity and long-term utility with $NIX.</p>
+        <div class="hero-buttons">
+            <a href="#submit" class="btn btn-primary">Submit App</a>
+            <a href="#explore" class="btn btn-secondary">Get $NIX</a>
         </div>
     </section>
 
-    <section id="listing" class="section alternate">
-        <div class="container">
-            <h2 class="section-title">Listing & Availability</h2>
-            <div class="content-card full-width">
-                <h3>Initial Launch</h3>
-                <p>The token will debut in an EGLD-NIX pool on xExchange, with 25% of total supply as initial liquidity at a market-determined price.</p>
-                <ul class="feature-list">
-                    <li>Post-launch: Available on ecosystem DEXs like OneDEX and JEXchange.</li>
-                    <li>Integration: Seamless addition to the xPortal app for easy access.</li>
-                </ul>
-                <div class="icon-animation">
-                    <div class="rocket">🚀</div>
-                </div>
-            </div>
+    <!-- Token Details Section -->
+    <section id="token-details" class="section">
+        <h2>Token Details</h2>
+        <div class="token-id">
+            <span>TOKEN ID: NIX-12345</span>
+            <button class="copy-btn" onclick="copyTokenID()">Copy</button>
+        </div>
+        <table class="token-info">
+            <tr><th>Price</th><td id="price">Loading...</td></tr>
+            <tr><th>Market Cap</th><td id="mcap">Loading...</td></tr>
+            <tr><th>Supply</th><td id="supply">Loading...</td></tr>
+            <tr><th>Transfers</th><td id="transfers">Loading...</td></tr>
+        </table>
+        <div class="token-properties">
+            <p>Can't Mint</p>
+            <p>Can't Wipe</p>
+            <p>Can't Freeze</p>
+            <p>Can't Burn</p>
         </div>
     </section>
 
-    <section id="tokenomics" class="section">
-        <div class="container">
-            <h2 class="section-title">Tokenomics & Allocations</h2>
-            <div class="tokenomics-grid">
-                <div class="allocation-card">
-                    <div class="percentage">25%</div>
-                    <h4>Initial Liquidity</h4>
-                    <p>xExchange Pool</p>
-                </div>
-                <div class="allocation-card">
-                    <div class="percentage">45%</div>
-                    <h4>Future Liquidity Injections</h4>
-                    <p>Locked account, community-voted decisions for injections.</p>
-                </div>
-                <div class="allocation-card">
-                    <div class="percentage">15%</div>
-                    <h4>Treasury Reserves</h4>
-                    <p>For partnerships, integrations, and growth initiatives.</p>
-                </div>
-                <div class="allocation-card">
-                    <div class="percentage">10%</div>
-                    <h4>Team Allocation</h4>
-                    <p>Dedicated to core development team.</p>
-                </div>
-                <div class="allocation-card">
-                    <div class="percentage">5%</div>
-                    <h4>Initial Investors</h4>
-                    <p>Early supporters of the project.</p>
-                </div>
-            </div>
-            <div class="total-supply">
-                <h3>Total Supply: 9,137 $NIX Tokens</h3>
-            </div>
+    <!-- About AcroniX Section -->
+    <section id="about" class="section about">
+        <h2>About AcroniX</h2>
+        <p>
+            AcroniX is a long-term project built on MultiversX, designed to ride the waves of growth with scarcity and utility at its core. Unlike memecoins, AcroniX fosters a stable community of holders and supports developers by providing a hub to showcase innovative applications. List your software on the AcroniX Hub (in development), where the best projects will be featured. With 2% of the token supply dedicated to rewarding top projects, AcroniX is the platform that empowers other platforms—building a thriving ecosystem for creators and investors alike.
+        </p>
+    </section>
+
+    <!-- Explore $NIX Section -->
+    <section id="explore" class="section">
+        <h2>Explore $NIX</h2>
+        <div class="explore-links">
+            <p>Trade on:</p>
+            <a href="https://xexchange.com" target="_blank">xExchange</a>
+            <a href="https://app.jexchange.io" target="_blank">jExchange</a>
+            <a href="https://swap.onedex.app" target="_blank">OneDex</a>
+        </div>
+        <div class="wallet">
+            <p>Featured Wallet:</p>
+            <img src="xportal.png" alt="xPortal Wallet" class="wallet-img">
+        </div>
+        <div class="charting">
+            <p>Charting:</p>
+            <a href="https://dexscreener.com" target="_blank">DexScreener</a>
+            <a href="https://e-compass.io" target="_blank">e-Compass</a>
+        </div>
+        <div class="explorer">
+            <p>Explorer:</p>
+            <a href="https://explorer.multiversx.com" target="_blank">MultiversX Explorer</a>
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 AcroniX. Built on MultiversX. All rights reserved.</p>
+    <!-- Submit Application Section -->
+    <section id="submit" class="section">
+        <h2>Submit Your Application</h2>
+        <p>All applications are verified by our team and must be hosted on GitHub. To submit, contact us at:</p>
+        <div class="email-reveal">
+            <button onclick="revealEmail()">Reveal Email</button>
+            <span id="email" style="display: none;">acronix.team@proton.me</span>
         </div>
+    </section>
+
+    <!-- Featured Posts Section -->
+    <section id="posts" class="section posts">
+        <h2>Featured Posts</h2>
+        <div class="posts-grid">
+            <div class="post">Post 1 Placeholder</div>
+            <div class="post">Post 2 Placeholder</div>
+            <div class="post">Post 3 Placeholder</div>
+            <div class="post">Post 4 Placeholder</div>
+            <div class="post">Post 5 Placeholder</div>
+            <div class="post">Post 6 Placeholder</div>
+            <div class="post">Post 7 Placeholder</div>
+            <div class="post">Post 8 Placeholder</div>
+        </div>
+    </section>
+
+    <!-- How to Contribute Section -->
+    <section id="contribute" class="section">
+        <h2>How to Contribute</h2>
+        <p>
+            Join the AcroniX community! Follow us on <a href="https://x.com" target="_blank">X</a>, contribute liquidity to our pool on <a href="https://xexchange.com" target="_blank">xExchange</a>, and have fun building the future with us!
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Copyright AcroniX 2025</p>
     </footer>
 
     <script src="script.js"></script>
