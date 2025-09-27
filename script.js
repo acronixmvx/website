@@ -1,80 +1,94 @@
-// script.js
-document.addEventListener('DOMContentLoaded', function() {
-    // Hamburger Menu Toggle
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
+// Matrix Rain Effect
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
 
-    hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        hamburger.classList.toggle('active');
-    });
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
 
-    // Close menu on link click
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            hamburger.classList.remove('active');
-        });
-    });
+const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+const drops = [];
 
-    // Smooth Scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
+for (let x = 0; x < columns; x++) {
+    drops[x] = 1;
+}
 
-    // Scroll Animations with Intersection Observer
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+function draw() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#0f0';
+    ctx.font = fontSize + 'px monospace';
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.animationPlayState = 'running';
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
+    for (let i = 0; i < drops.length; i++) {
+        const text = chars.charAt(Math.floor(Math.random() * chars.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-    // Observe cards and sections
-    document.querySelectorAll('.content-card, .allocation-card, .section-title').forEach(el => {
-        el.style.animationPlayState = 'paused';
-        observer.observe(el);
-    });
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+        }
+        drops[i]++;
+    }
+}
 
-    // Header Background on Scroll
-    window.addEventListener('scroll', () => {
-        const header = document.querySelector('.header');
-        if (window.scrollY > 100) {
-            header.style.background = 'rgba(0, 0, 0, 0.95)';
-        } else {
-            header.style.background = 'rgba(0, 0, 0, 0.8)';
+setInterval(draw, 33);
+
+// Hamburger Menu
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    hamburger.classList.toggle('open');
+});
+
+// Smooth Scroll for Navbar Links
+document.querySelectorAll('.nav-links a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('open');
         }
     });
+});
 
-    // CTA Button Pulse
-    const ctaButton = document.querySelector('.cta-button');
-    setInterval(() => {
-        ctaButton.style.transform = 'scale(1.05)';
-        setTimeout(() => {
-            ctaButton.style.transform = 'scale(1)';
-        }, 300);
-    }, 3000);
-
-    // Parallax Effect for Hero BG (simple)
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const heroBg = document.querySelector('.hero-bg');
-        heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+// Copy Token ID
+function copyTokenID() {
+    navigator.clipboard.writeText('NIX-de14cc').then(() => {
+        alert('Token ID copied to clipboard!');
     });
+}
+
+// Reveal Email
+function revealEmail() {
+    const email = document.getElementById('email');
+    email.style.display = 'inline';
+}
+
+// Placeholder for API Data (to be replaced with real API call)
+function fetchTokenData() {
+    // Mock data (replace with api.multiversx.com call)
+    const mockData = {
+        price: '$0.50',
+        mcap: '$10M',
+        supply: '100M $NIX',
+        transfers: '5000'
+    };
+
+    document.getElementById('price').textContent = mockData.price;
+    document.getElementById('mcap').textContent = mockData.mcap;
+    document.getElementById('supply').textContent = mockData.supply;
+    document.getElementById('transfers').textContent = mockData.transfers;
+}
+
+fetchTokenData();
+
+// Resize Canvas on Window Resize
+window.addEventListener('resize', () => {
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
 });
