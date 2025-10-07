@@ -3,134 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AcroniX - Tokenized Applications</title>
-    <link rel="icon" type="image/png" href="acronix.png.png">
-    <link rel="stylesheet" href="styles.css">
+    <title>AcroniX</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #000;
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .content {
+            z-index: 1;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 3em;
+            text-shadow: 0 0 10px #00ff00;
+            margin: 0;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        p {
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #00ff00; }
+            to { text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00; }
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            p { font-size: 1em; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Matrix Rain Background -->
     <canvas id="matrix"></canvas>
-
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">AcroniX</div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#token-details">Token Details</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#explore">Explore $NIX</a></li>
-            <li><a href="#submit">Submit App</a></li>
-            <li><a href="#posts">Featured Posts</a></li>
-            <li><a href="#contribute">Contribute</a></li>
-        </ul>
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
+    <div class="content">
         <h1>AcroniX</h1>
-        <p>Tokenized Applications, Scarcity and long-term utility with $NIX.</p>
-        <div class="hero-buttons">
-            <a href="#submit" class="btn btn-primary">Submit App</a>
-            <a href="#explore" class="btn btn-secondary">Get $NIX</a>
-        </div>
-    </section>
-
-    <!-- Token Details Section -->
-    <section id="token-details" class="section">
-        <h2>Token Details</h2>
-        <div class="token-id">
-            <span>TOKEN ID: NIX-12345</span>
-            <button class="copy-btn" onclick="copyTokenID()">Copy</button>
-        </div>
-        <table class="token-info">
-            <tr><th>Price</th><td id="price">Loading...</td></tr>
-            <tr><th>Market Cap</th><td id="mcap">Loading...</td></tr>
-            <tr><th>Supply</th><td id="supply">Loading...</td></tr>
-            <tr><th>Transfers</th><td id="transfers">Loading...</td></tr>
-        </table>
-        <div class="token-properties">
-            <p>Can't Mint</p>
-            <p>Can't Wipe</p>
-            <p>Can't Freeze</p>
-            <p>Can't Burn</p>
-        </div>
-    </section>
-
-    <!-- About AcroniX Section -->
-    <section id="about" class="section about">
-        <h2>About AcroniX</h2>
-        <p>
-            AcroniX is a long-term project built on MultiversX, designed to ride the waves of growth with scarcity and utility at its core. Unlike memecoins, AcroniX fosters a stable community of holders and supports developers by providing a hub to showcase innovative applications. List your software on the AcroniX Hub (in development), where the best projects will be featured. With 2% of the token supply dedicated to rewarding top projects, AcroniX is the platform that empowers other platforms—building a thriving ecosystem for creators and investors alike.
-        </p>
-    </section>
-
-    <!-- Explore $NIX Section -->
-    <section id="explore" class="section">
-        <h2>Explore $NIX</h2>
-        <div class="explore-links">
-            <p>Trade on:</p>
-            <a href="https://xexchange.com" target="_blank">xExchange</a>
-            <a href="https://app.jexchange.io" target="_blank">jExchange</a>
-            <a href="https://swap.onedex.app" target="_blank">OneDex</a>
-        </div>
-        <div class="wallet">
-            <p>Featured Wallet:</p>
-            <img src="xportal.png" alt="xPortal Wallet" class="wallet-img">
-        </div>
-        <div class="charting">
-            <p>Charting:</p>
-            <a href="https://dexscreener.com" target="_blank">DexScreener</a>
-            <a href="https://e-compass.io" target="_blank">e-Compass</a>
-        </div>
-        <div class="explorer">
-            <p>Explorer:</p>
-            <a href="https://explorer.multiversx.com" target="_blank">MultiversX Explorer</a>
-        </div>
-    </section>
-
-    <!-- Submit Application Section -->
-    <section id="submit" class="section">
-        <h2>Submit Your Application</h2>
-        <p>All applications are verified by our team and must be hosted on GitHub. To submit, contact us at:</p>
-        <div class="email-reveal">
-            <button onclick="revealEmail()">Reveal Email</button>
-            <span id="email" style="display: none;">acronix.team@proton.me</span>
-        </div>
-    </section>
-
-    <!-- Featured Posts Section -->
-    <section id="posts" class="section posts">
-        <h2>Featured Posts</h2>
-        <div class="posts-grid">
-            <div class="post">Post 1 Placeholder</div>
-            <div class="post">Post 2 Placeholder</div>
-            <div class="post">Post 3 Placeholder</div>
-            <div class="post">Post 4 Placeholder</div>
-            <div class="post">Post 5 Placeholder</div>
-            <div class="post">Post 6 Placeholder</div>
-            <div class="post">Post 7 Placeholder</div>
-            <div class="post">Post 8 Placeholder</div>
-        </div>
-    </section>
-
-    <!-- How to Contribute Section -->
-    <section id="contribute" class="section">
-        <h2>How to Contribute</h2>
-        <p>
-            Join the AcroniX community! Follow us on <a href="https://x.com" target="_blank">X</a>, contribute liquidity to our pool on <a href="https://xexchange.com" target="_blank">xExchange</a>, and have fun building the future with us!
-        </p>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>Copyright AcroniX 2025</p>
-    </footer>
-
-    <script src="script.js"></script>
+        <p>Website under development ⚒️</p>
+    </div>
+    <script>
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00ff00';
+            ctx.font = `${fontSize}px monospace`;
+            drops.forEach((y, i) => {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, y * fontSize);
+                if (y * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            });
+        }
+        setInterval(draw, 50);
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
 </html>
